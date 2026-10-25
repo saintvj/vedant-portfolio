@@ -1,4 +1,4 @@
-﻿package com.vedant.portfolio.config;
+package com.vedant.portfolio.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

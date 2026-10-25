@@ -1,4 +1,4 @@
-﻿package com.vedant.portfolio.repository;
+package com.vedant.portfolio.repository;
 
 import com.vedant.portfolio.model.FriendPhoto;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-﻿package com.vedant.portfolio;
+package com.vedant.portfolio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

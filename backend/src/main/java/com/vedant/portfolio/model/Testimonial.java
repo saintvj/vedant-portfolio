@@ -1,4 +1,4 @@
-﻿package com.vedant.portfolio.model;
+package com.vedant.portfolio.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;

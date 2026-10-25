@@ -1,105 +1,154 @@
-﻿import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, HostListener, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThemeTransitionService } from '../../../core/services/theme-transition.service';
 
 @Component({
   selector: 'app-hero-section',
   standalone: true,
+  imports: [CommonModule],
   template: `
-    <section id="about" class="relative pt-36 pb-20 px-6 overflow-hidden">
-      <!-- Ambient Glow Orbs -->
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-cyan-600/20 via-sky-500/10 to-purple-600/20 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
+    <section class="relative pt-36 pb-24 px-6 overflow-hidden bg-pop-bg">
+      <!-- Playful Decorative Ambient Elements -->
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-pop-peach/60 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/2 -left-20 w-80 h-80 bg-pop-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <!-- Subtle Grid Pattern Background -->
+      <div class="absolute inset-0 bg-[radial-gradient(#f0e6df_1px,transparent_1px)] [background-size:24px_24px] opacity-70 pointer-events-none"></div>
 
-      <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 relative z-10">
+      <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-14 relative z-10">
         
-        <!-- Left: Punchy Text & Persona -->
-        <div class="flex-1 text-center lg:text-left space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-mono text-cyan-300 shadow-inner">
-            <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-            <span>SYSTEM STATUS: FULL THROTTLE</span>
+        <!-- Left: Bold Pop Studio Typography & High Energy Intro -->
+        <div class="flex-1 text-center lg:text-left space-y-7">
+          
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-pop-border shadow-sm text-xs font-mono font-bold text-pop-coral">
+            <span class="inline-block w-2.5 h-2.5 rounded-full bg-pop-coral animate-ping"></span>
+            <span>VEDANT JAKARWAR // FULL-THROTTLE DEV & RUNNER</span>
           </div>
 
-          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
-            Build fast. <br>
-            <span class="bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400 bg-clip-text text-transparent">
-              Live fearlessly.
+          <!-- Headline -->
+          <h1 class="text-5xl sm:text-7xl font-black tracking-tight text-pop-dark leading-[1.05]">
+            Build fast. <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pop-coral via-pop-orange to-pop-yellow">
+              Ship fearlessly.
             </span>
           </h1>
 
-          <p class="text-lg sm:text-xl text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-            I'm <span class="text-white font-semibold">Vedant Jakarwar</span> — a software engineer crafting high-throughput backend services, resilient SQL architectures, and pixel-precise interfaces.
+          <!-- Punchy Bio -->
+          <p class="text-lg sm:text-xl text-pop-slate max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
+            I'm a software engineer crafting high-throughput backend microservices, rock-solid PostgreSQL databases, and snappy, vibrant web applications.
           </p>
 
-          <p class="text-sm sm:text-base text-slate-400 max-w-lg mx-auto lg:mx-0 italic font-mono border-l-2 border-cyan-500/50 pl-4 py-1">
-            "Life's too short for flaky microservices, boring code, or living like there's always a tomorrow."
-          </p>
+          <!-- Mindset Callout -->
+          <div class="p-4 rounded-2xl bg-white border border-pop-border/80 shadow-sm max-w-lg mx-auto lg:mx-0 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-pop-peach flex items-center justify-center text-2xl flex-shrink-0 animate-wiggle">
+              🚴
+            </div>
+            <div class="text-xs text-pop-slate text-left">
+              <span class="font-bold text-pop-dark block text-sm">Everyday Office Cyclist & Half-Marathon Prep</span>
+              Pushing boundaries both on the bike trail and in distributed concurrency benchmarks.
+            </div>
+          </div>
 
-          <!-- Action buttons -->
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-            <a href="#skills" class="px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/25 flex items-center gap-2">
-              <span>Recruiter Briefing</span>
-              <span>⚡</span>
-            </a>
-            <a href="#tracker" class="px-6 py-3 rounded-full bg-slate-900/90 text-slate-200 border border-slate-700/80 hover:border-cyan-400 hover:text-white transition-all text-sm font-medium flex items-center gap-2">
-              <span>Telemetry Tracker</span>
-              <span class="text-cyan-400">📊</span>
+          <!-- Massive Unmissable Bouncy CTA Button -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <button 
+              (click)="openCosmicResume()"
+              class="group relative w-full sm:w-auto px-9 py-5 rounded-2xl bg-gradient-to-r from-pop-coral via-pop-orange to-pop-coral text-white font-black text-base sm:text-lg tracking-wide uppercase shadow-pop-button hover:translate-y-1 active:translate-y-2 active:shadow-pop-button-active transition-all duration-200 flex items-center justify-center gap-3">
+              <span>HIRE ME / VIEW RESUME</span>
+              <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">🚀</span>
+            </button>
+
+            <a 
+              href="#projects" 
+              class="w-full sm:w-auto px-7 py-5 rounded-2xl bg-white hover:bg-pop-peach/40 text-pop-dark font-bold text-sm tracking-wide border-2 border-pop-border transition-all flex items-center justify-center gap-2 hover:border-pop-coral shadow-sm">
+              <span>EXPLORE APPS</span>
+              <span class="text-pop-coral">⚡</span>
             </a>
           </div>
 
-          <!-- Quick Stats Pills -->
-          <div class="grid grid-cols-3 gap-3 pt-6 max-w-md mx-auto lg:mx-0 text-left">
-            <div class="glass-panel p-3 rounded-xl border border-slate-800">
-              <div class="text-xl sm:text-2xl font-bold font-mono text-cyan-400">99.9%</div>
-              <div class="text-[11px] text-slate-400 font-medium">Uptime Mindset</div>
+          <!-- Quick Stats Pills in Pop Studio Style -->
+          <div class="grid grid-cols-3 gap-4 pt-4 max-w-md mx-auto lg:mx-0 text-left">
+            <div class="bg-white p-4 rounded-2xl border border-pop-border shadow-sm hover:border-pop-coral/40 transition-colors">
+              <div class="text-2xl font-black text-pop-coral font-mono">99.9%</div>
+              <div class="text-xs text-pop-slate font-bold mt-0.5">Uptime Focus</div>
             </div>
-            <div class="glass-panel p-3 rounded-xl border border-slate-800">
-              <div class="text-xl sm:text-2xl font-bold font-mono text-violet-400">500+</div>
-              <div class="text-[11px] text-slate-400 font-medium">Problems Crushed</div>
+            <div class="bg-white p-4 rounded-2xl border border-pop-border shadow-sm hover:border-pop-orange/40 transition-colors">
+              <div class="text-2xl font-black text-pop-orange font-mono">500+</div>
+              <div class="text-xs text-pop-slate font-bold mt-0.5">LeetCode Solved</div>
             </div>
-            <div class="glass-panel p-3 rounded-xl border border-slate-800">
-              <div class="text-xl sm:text-2xl font-bold font-mono text-amber-400">100%</div>
-              <div class="text-[11px] text-slate-400 font-medium">Grit & Passion</div>
+            <div class="bg-white p-4 rounded-2xl border border-pop-border shadow-sm hover:border-pop-yellow/80 transition-colors">
+              <div class="text-2xl font-black text-pop-dark font-mono">21.1 km</div>
+              <div class="text-xs text-pop-slate font-bold mt-0.5">HM Marathon Prep</div>
             </div>
           </div>
+
         </div>
 
-        <!-- Right: Modern Visual Avatar / Space-Suit Node -->
-        <div class="flex-1 flex justify-center relative">
-          <div class="relative w-72 h-72 sm:w-88 sm:h-88 md:w-96 md:h-96">
-            <!-- Orbital rings -->
-            <div class="absolute inset-0 rounded-full border border-cyan-500/20 animate-spin" style="animation-duration: 25s;"></div>
-            <div class="absolute -inset-4 rounded-full border border-dashed border-violet-500/20 animate-spin" style="animation-duration: 40s; animation-direction: reverse;"></div>
+        <!-- Right: 3D Mouse-Tilt Avatar Card -->
+        <div class="flex-1 flex justify-center relative perspective-1000">
+          <div 
+            #tiltCard
+            (mousemove)="onMouseMove($event)"
+            (mouseleave)="onMouseLeave()"
+            [style.transform]="cardTransform"
+            class="relative w-80 h-96 sm:w-96 sm:h-[450px] rounded-3xl transition-transform duration-150 ease-out transform-style-3d cursor-pointer select-none">
+            
+            <!-- Shadow Card Layer behind -->
+            <div class="absolute -inset-2 bg-gradient-to-r from-pop-coral via-pop-orange to-pop-yellow rounded-[2rem] blur-xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
 
-            <!-- Glowing core card -->
-            <div class="w-full h-full rounded-3xl overflow-hidden glass-panel border-2 border-cyan-500/30 p-2 shadow-2xl shadow-cyan-500/20 relative group">
-              <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
-                alt="Vedant Jakarwar" 
-                class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
-              />
-
-              <!-- Overlay Badge -->
-              <div class="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-slate-950/85 backdrop-blur-md border border-slate-700/60 flex items-center justify-between">
-                <div>
-                  <div class="text-xs font-bold text-white flex items-center gap-1.5">
-                    <span>Vedant Jakarwar</span>
-                    <span class="text-emerald-400 text-[10px]">● Online</span>
-                  </div>
-                  <div class="text-[10px] text-slate-400 font-mono">Location: Bengaluru / Remote Orbit</div>
+            <!-- Card Container -->
+            <div class="relative w-full h-full rounded-3xl bg-white p-3 border-4 border-white shadow-2xl flex flex-col justify-between overflow-hidden">
+              
+              <!-- Avatar with Goggles Photo -->
+              <div class="relative w-full h-72 sm:h-84 rounded-2xl overflow-hidden bg-pop-peach">
+                <img 
+                  [src]="heroPhotoUrl" 
+                  (error)="handleImageError()"
+                  alt="Vedant Jakarwar with Sport Goggles" 
+                  class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                />
+                
+                <!-- Goggles Mode Tag -->
+                <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-pop-dark/85 backdrop-blur-md text-white text-[11px] font-mono font-bold flex items-center gap-1.5 shadow-md">
+                  <span>🥽</span>
+                  <span>GOGGLES MODE: ACTIVE</span>
                 </div>
-                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-300 font-mono text-xs font-bold">
+
+                <!-- 3D Floating Badge -->
+                <div class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-pop-border shadow-lg text-xs font-mono font-extrabold text-pop-dark">
+                  ⚡ 3D TILT READY
+                </div>
+              </div>
+
+              <!-- Card Bottom info bar -->
+              <div class="p-3 bg-pop-bg rounded-2xl border border-pop-border flex items-center justify-between">
+                <div>
+                  <h3 class="font-black text-sm text-pop-dark">Vedant Jakarwar</h3>
+                  <p class="text-[11px] text-pop-slate font-medium">Software Engineer • Adventurer</p>
+                </div>
+                <div class="w-9 h-9 rounded-xl bg-pop-coral flex items-center justify-center text-white font-mono font-black text-xs shadow-md shadow-pop-coral/30">
                   VJ
                 </div>
               </div>
+
             </div>
 
-            <!-- Floating Micro-Badges -->
-            <div class="absolute -top-3 -right-3 glass-panel px-3 py-1.5 rounded-full border border-cyan-400/50 text-xs font-mono text-cyan-300 flex items-center gap-1.5 shadow-lg shadow-cyan-500/20 animate-float">
+            <!-- Floating Micro-Pill: Java & Spring -->
+            <div 
+              class="absolute -top-4 -right-4 px-4 py-2 rounded-2xl bg-white border-2 border-pop-orange/40 text-xs font-mono font-black text-pop-dark shadow-xl flex items-center gap-2 animate-bounce-subtle">
               <span>☕</span>
               <span>Java 22 + Spring</span>
             </div>
-            <div class="absolute -bottom-3 -left-3 glass-panel px-3 py-1.5 rounded-full border border-purple-400/50 text-xs font-mono text-purple-300 flex items-center gap-1.5 shadow-lg shadow-purple-500/20 animate-float" style="animation-delay: 1.5s;">
-              <span>⚡</span>
-              <span>Angular & SQL</span>
+
+            <!-- Floating Micro-Pill: 21km Runner -->
+            <div 
+              class="absolute -bottom-4 -left-4 px-4 py-2 rounded-2xl bg-white border-2 border-pop-coral/40 text-xs font-mono font-black text-pop-coral shadow-xl flex items-center gap-2 animate-bounce-subtle"
+              style="animation-delay: 1s;">
+              <span>🏃‍♂️</span>
+              <span>21km Road Prep</span>
             </div>
+
           </div>
         </div>
 
@@ -107,4 +156,42 @@
     </section>
   `
 })
-export class HeroSectionComponent {}
+export class HeroSectionComponent {
+  private themeService = inject(ThemeTransitionService);
+
+  @ViewChild('tiltCard') tiltCardRef!: ElementRef<HTMLDivElement>;
+
+  heroPhotoUrl = 'assets/images/profile/vedant-hero.jpg';
+  cardTransform = 'rotateX(0deg) rotateY(0deg)';
+
+  onMouseMove(e: MouseEvent): void {
+    const card = this.tiltCardRef?.nativeElement;
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; // x position within card
+    const y = e.clientY - rect.top;  // y position within card
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Max rotation angles (e.g., 18 degrees)
+    const rotateX = ((y - centerY) / centerY) * -16;
+    const rotateY = ((x - centerX) / centerX) * 16;
+
+    this.cardTransform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.03, 1.03, 1.03)`;
+  }
+
+  onMouseLeave(): void {
+    this.cardTransform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  }
+
+  handleImageError(): void {
+    // Fallback if local photo isn't available
+    this.heroPhotoUrl = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';
+  }
+
+  openCosmicResume(): void {
+    this.themeService.transitionTo('/resume');
+  }
+}

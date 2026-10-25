@@ -1,4 +1,4 @@
-﻿package com.vedant.portfolio.service;
+package com.vedant.portfolio.service;
 
 import com.vedant.portfolio.model.FriendPhoto;
 import com.vedant.portfolio.repository.FriendPhotoRepository;

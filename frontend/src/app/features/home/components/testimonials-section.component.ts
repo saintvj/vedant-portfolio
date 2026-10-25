@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioApiService } from '../../../core/services/portfolio-api.service';
 import { Testimonial } from '../../../core/models/portfolio.models';
@@ -8,71 +8,77 @@ import { Testimonial } from '../../../core/models/portfolio.models';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section id="testimonials" class="py-24 px-6 relative overflow-hidden">
+    <section id="testimonials" class="py-24 px-6 relative overflow-hidden bg-pop-bg border-t border-pop-border">
       <div class="max-w-6xl mx-auto space-y-12">
         
         <!-- Header -->
         <div class="text-center space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-950/60 border border-violet-800/60 text-xs font-mono text-violet-400">
-            <span>UNFILTERED COMMUNIQUE</span>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-pop-border text-xs font-mono font-bold text-pop-coral shadow-sm">
+            <span>PEER REVIEWS & VOUCHES</span>
           </div>
-          <h2 class="text-3xl sm:text-5xl font-black text-white">Peer & Mentor Transmissions</h2>
-          <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base">
+          <h2 class="text-4xl sm:text-5xl font-black text-pop-dark tracking-tight">
+            Peer & Mentor Transmissions
+          </h2>
+          <p class="text-pop-slate max-w-xl mx-auto text-base">
             What engineering leads, architect partners, and teammates say about shipping alongside Vedant.
           </p>
         </div>
 
         <!-- Slider Container -->
-        <div class="relative max-w-4xl mx-auto">
-          <div *ngIf="testimonials.length > 0" class="glass-panel p-8 sm:p-12 rounded-3xl border border-cyan-500/30 relative">
+        <div class="relative max-w-3xl mx-auto">
+          <div *ngIf="testimonials.length > 0" class="pop-card p-8 sm:p-12 relative">
             
             <!-- Big Quote Mark -->
-            <div class="absolute top-6 right-8 text-7xl font-serif text-cyan-500/10 select-none">“</div>
+            <div class="absolute top-6 right-8 text-7xl font-serif text-pop-peach select-none">“</div>
 
             <div class="space-y-6 relative z-10">
               <!-- Star rating -->
-              <div class="flex items-center gap-1 text-amber-400 text-lg">
+              <div class="flex items-center gap-1 text-amber-500 text-lg">
                 <span *ngFor="let s of [1,2,3,4,5]">★</span>
-                <span class="ml-2 text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-800/50">
+                <span class="ml-2 text-xs font-mono font-bold text-pop-coral bg-pop-peach px-2.5 py-0.5 rounded-full">
                   {{ currentTestimonial.relationshipTag }}
                 </span>
               </div>
 
               <!-- Quote Body -->
-              <p class="text-lg sm:text-2xl text-slate-100 font-light leading-relaxed italic">
+              <p class="text-lg sm:text-2xl text-pop-dark font-medium leading-relaxed italic">
                 "{{ currentTestimonial.content }}"
               </p>
 
               <!-- Author Info -->
-              <div class="flex items-center gap-4 pt-4 border-t border-slate-800">
+              <div class="flex items-center gap-4 pt-4 border-t border-pop-border">
                 <img 
                   [src]="currentTestimonial.avatarUrl" 
                   [alt]="currentTestimonial.authorName"
-                  class="w-14 h-14 rounded-full object-cover border-2 border-cyan-400/60 shadow-lg shadow-cyan-500/20"
+                  class="w-14 h-14 rounded-full object-cover border-2 border-pop-coral shadow-md"
                 />
                 <div>
-                  <h4 class="font-bold text-white text-base">{{ currentTestimonial.authorName }}</h4>
-                  <p class="text-xs text-slate-400 font-mono">{{ currentTestimonial.authorRole }} • <span class="text-cyan-400">{{ currentTestimonial.company }}</span></p>
+                  <h4 class="font-black text-pop-dark text-base">{{ currentTestimonial.authorName }}</h4>
+                  <p class="text-xs text-pop-slate font-mono">{{ currentTestimonial.authorRole }} • <span class="text-pop-coral font-bold">{{ currentTestimonial.company }}</span></p>
                 </div>
               </div>
             </div>
 
             <!-- Slide Navigation Controls -->
-            <div class="flex items-center justify-between mt-8 pt-4 border-t border-slate-800/60">
+            <div class="flex items-center justify-between mt-8 pt-4 border-t border-pop-border">
               <div class="flex items-center gap-2">
                 <button 
                   *ngFor="let t of testimonials; let i = index"
                   (click)="currentIndex = i"
-                  [ngClass]="i === currentIndex ? 'w-8 bg-cyan-400' : 'w-2 bg-slate-700'"
+                  [ngClass]="i === currentIndex ? 'w-8 bg-pop-coral' : 'w-2 bg-slate-300'"
                   class="h-2 rounded-full transition-all duration-300">
                 </button>
               </div>
 
               <div class="flex items-center gap-3">
-                <button (click)="prev()" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 hover:border-cyan-400 text-white flex items-center justify-center transition-all active:scale-95">
+                <button 
+                  (click)="prev()" 
+                  class="w-10 h-10 rounded-full bg-pop-bg border border-pop-border hover:bg-pop-dark hover:text-white text-pop-dark flex items-center justify-center font-bold transition-all active:scale-95 shadow-sm">
                   ←
                 </button>
-                <button (click)="next()" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 hover:border-cyan-400 text-white flex items-center justify-center transition-all active:scale-95">
+                <button 
+                  (click)="next()" 
+                  class="w-10 h-10 rounded-full bg-pop-bg border border-pop-border hover:bg-pop-dark hover:text-white text-pop-dark flex items-center justify-center font-bold transition-all active:scale-95 shadow-sm">
                   →
                 </button>
               </div>
