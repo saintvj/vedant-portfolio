@@ -39,7 +39,7 @@ import { CommonModule } from '@angular/common';
                 </div>
                 <div>
                   <h3 class="font-black text-pop-dark text-base">GitHub Activity Matrix</h3>
-                  <a href="https://github.com/vedantjakarwar" target="_blank" class="text-xs text-pop-coral font-mono font-bold hover:underline">&#64;vedantjakarwar</a>
+                  <a href="https://github.com/saintvj" target="_blank" class="text-xs text-pop-coral font-mono font-bold hover:underline">&#64;saintvj</a>
                 </div>
               </div>
               <div class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-mono font-bold">

@@ -25,7 +25,7 @@ import { ThemeTransitionService } from '../../core/services/theme-transition.ser
             (click)="returnToHome()" 
             class="text-sm font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-2 group transition-all">
             <span class="transition-transform group-hover:-translate-x-1 font-bold">←</span>
-            <span>Return to Pop Studio</span>
+            <span>Return to Portfolio</span>
           </button>
 
           <div class="flex items-center gap-3">
@@ -36,7 +36,7 @@ import { ThemeTransitionService } from '../../core/services/theme-transition.ser
               <span>🖨️</span>
             </button>
             <a 
-              href="mailto:vedantjakarwar@gmail.com" 
+              href="mailto:jakarwarvedant@gmail.com" 
               class="px-5 py-2 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/25">
               <span>Contact Vedant</span>
               <span>⚡</span>
@@ -50,16 +50,19 @@ import { ThemeTransitionService } from '../../core/services/theme-transition.ser
             <div class="space-y-2">
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-700/60 text-[11px] font-mono text-cyan-400">
                 <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                <span>COSMIC TECH DOSSIER // RECRUITER VERIFIED</span>
+                <span>PROFESSIONAL RESUME DOSSIER</span>
               </div>
               <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">VEDANT JAKARWAR</h1>
-              <p class="text-base text-cyan-300 font-mono">Software Engineer • High-Throughput Distributed Systems & Reactive Web</p>
-              <p class="text-xs text-slate-400 font-mono">Bengaluru / Remote Orbit • vedantjakarwar.com • vedantjakarwar&#64;gmail.com</p>
+              <p class="text-base text-cyan-300 font-mono">Senior Software Engineer • Backend & Enterprise Systems</p>
+              <p class="text-xs text-slate-400 font-mono">
+                Navi Mumbai, Maharashtra, India • +91 8446861047 • jakarwarvedant&#64;gmail.com • 
+                <a href="https://github.com/saintvj" target="_blank" class="text-cyan-400 hover:underline">github.com/saintvj</a>
+              </p>
             </div>
 
             <div class="flex flex-col items-start sm:items-end gap-2 text-xs font-mono text-slate-400">
-              <span class="px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-800">Status: Available for High-Impact Roles</span>
-              <span>Focus: Java 22, PostgreSQL, Angular 18</span>
+              <span class="px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-800">Experience: 3.8+ Years</span>
+              <span>LTIMindtree (06/2022 – Present)</span>
             </div>
           </div>
         </div>
@@ -67,99 +70,165 @@ import { ThemeTransitionService } from '../../core/services/theme-transition.ser
         <!-- 1. Executive Summary -->
         <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-3">
           <h2 class="text-xs font-mono text-cyan-400 uppercase tracking-widest flex items-center gap-2">
-            <span>01 // EXECUTIVE SUMMARY</span>
+            <span>01 // PROFESSIONAL SUMMARY</span>
           </h2>
           <p class="text-slate-300 text-sm leading-relaxed">
-            High-velocity software engineer with deep focus on backend services, concurrency, relational query optimization, and modern reactive web applications. Passionate about architecting zero-latency microservices with Java 22 and Spring Boot, optimizing PostgreSQL execution plans, and assembling dynamic user interfaces with Angular 18. Driven by high ownership, adventure, and relentless curiosity.
+            Backend-focused Software Engineer with 3.8+ years of experience building scalable, secure, and high-performance enterprise applications. Strong expertise in Java, Spring Boot, SQL, and automation with hands-on experience in CI/CD pipelines, Docker, and cloud deployments. Proficient in DSA, Low-Level Design (LLD), RESTful API design, and Agile software development.
           </p>
         </div>
 
-        <!-- 2. Core Technical Radar -->
+        <!-- 2. Technical Skills Catalog -->
         <div id="skills" class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-4">
           <h2 class="text-xs font-mono text-cyan-400 uppercase tracking-widest">
-            02 // TECHNICAL ORBITS & WEAPONS OF CHOICE
+            02 // TECHNICAL SKILLS & STACK
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
             <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
-              <span class="text-cyan-300 font-semibold">Backend & Runtimes:</span>
-              <p class="text-slate-400">Java 22/21/17, Spring Boot 3, Spring Data JPA, Hibernate, REST APIs, Microservices, JUnit, Mockito</p>
+              <span class="text-cyan-300 font-semibold">Languages:</span>
+              <p class="text-slate-400">Java, Python, Shell Scripting, JavaScript, TypeScript</p>
             </div>
             <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
-              <span class="text-cyan-300 font-semibold">Databases & Infrastructure:</span>
-              <p class="text-slate-400">PostgreSQL, SQL Tuning, EXPLAIN ANALYZE, Docker, Git, Linux, Supabase, Neon</p>
+              <span class="text-cyan-300 font-semibold">Frameworks:</span>
+              <p class="text-slate-400">Spring Boot, Spring MVC, Spring Security, Hibernate, Angular</p>
             </div>
             <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
-              <span class="text-cyan-300 font-semibold">Frontend & Interactive:</span>
-              <p class="text-slate-400">Angular 18, TypeScript, RxJS, Tailwind CSS, HTML5/CSS3, Responsive Glassmorphism</p>
+              <span class="text-cyan-300 font-semibold">Databases:</span>
+              <p class="text-slate-400">Oracle SQL, PostgreSQL, MySQL</p>
             </div>
             <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
-              <span class="text-cyan-300 font-semibold">Practices & Mindset:</span>
-              <p class="text-slate-400">Distributed Consensus, High Concurrency, Agile Sprints, Clean Architecture, High Ownership</p>
+              <span class="text-cyan-300 font-semibold">Tools & Cloud:</span>
+              <p class="text-slate-400">Git, Jenkins, AutoSys, Bitbucket, JIRA, Maven, Gradle, Docker, Render, GitHub Copilot</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5 sm:col-span-2">
+              <span class="text-cyan-300 font-semibold">Core Concepts:</span>
+              <p class="text-slate-400">OOP, REST APIs, Microservices, CI/CD, Agile, DevOps, DSA, LLD, Batch Processing, Cloud Deployment</p>
             </div>
           </div>
         </div>
 
-        <!-- 3. Professional Experience & Projects Orbit -->
+        <!-- 3. Work Experience -->
         <div id="experience" class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-8">
           <h2 class="text-xs font-mono text-cyan-400 uppercase tracking-widest">
-            03 // EXPEDITIONS & IMPACT
+            03 // WORK EXPERIENCE
           </h2>
 
-          <!-- Role 1 -->
-          <div class="relative pl-6 border-l-2 border-cyan-500/40 space-y-2">
+          <!-- Senior Software Engineer @ LTIMindtree -->
+          <div class="relative pl-6 border-l-2 border-cyan-500/40 space-y-3">
             <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-cosmic-950 border-2 border-cyan-400"></div>
             <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-              <h3 class="text-base font-bold text-white">Full-Stack Software Engineer</h3>
-              <span class="text-xs font-mono text-cyan-400">2024 - Present</span>
+              <div>
+                <h3 class="text-base font-bold text-white">Senior Software Engineer</h3>
+                <p class="text-xs font-mono text-cyan-300 font-semibold">LTIMindtree • Mumbai, India</p>
+              </div>
+              <span class="text-xs font-mono text-cyan-400 mt-1 sm:mt-0 font-bold">06/2022 – Present</span>
             </div>
-            <div class="text-xs font-mono text-slate-400">Core Services & Product Platforms</div>
-            <ul class="list-disc list-inside text-xs text-slate-300 space-y-1.5 leading-relaxed pt-1">
-              <li>Engineered high-performance REST microservices in Java 22 / Spring Boot 3, handling millions of monthly data point aggregations with sub-40ms latency.</li>
-              <li>Re-indexed mission-critical PostgreSQL tables, eliminating sequential table scans and cutting p99 query latency by 62%.</li>
-              <li>Led frontend architectural refactor migrating legacy views into modular Angular 18 standalone components with reactive signal state.</li>
+            <ul class="list-disc list-inside text-xs text-slate-300 space-y-2 leading-relaxed pt-1">
+              <li>Contributed to enterprise-scale financial systems focused on transaction processing, automation, and backend modernization.</li>
+              <li>Developed backend services using <strong>Java</strong>, <strong>Spring Boot</strong>, and <strong>RESTful APIs</strong> following <strong>Microservices Architecture</strong>; worked on frontend modules using <strong>Angular</strong> with TypeScript for responsive UI and REST API integration.</li>
+              <li>Leveraged <strong>GitHub Copilot, Claude, and Gemini</strong> to accelerate development, improve code quality, and streamline debugging workflows.</li>
+              <li>Developed and optimized Java and Shell-based batch jobs in <strong>Unix/Linux</strong> environments; executed Unix commands for server management, log analysis, and automated workflows.</li>
+              <li>Migrated legacy Sybase databases to Oracle and implemented backend logic using Java and PL/SQL.</li>
+              <li>Automated database refresh and batch workflows, reducing environment setup and testing time by <strong>40%</strong>.</li>
+              <li>Increased unit and regression test coverage from 50% to <strong>90%</strong> through refactoring and test automation.</li>
+              <li>Migrated a legacy Struts application to a modern Gradle-based build architecture.</li>
+              <li>Collaborated with Agile teams to deliver enhancements and ensure stable SIT and UAT releases.</li>
             </ul>
           </div>
+        </div>
 
-          <!-- Featured System 1 -->
+        <!-- 4. Projects (Freelance / Personal) -->
+        <div id="projects" class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-8">
+          <h2 class="text-xs font-mono text-cyan-400 uppercase tracking-widest">
+            04 // FEATURED PROJECTS & SAAS
+          </h2>
+
+          <!-- Project 1 -->
           <div class="relative pl-6 border-l-2 border-violet-500/40 space-y-2">
             <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-cosmic-950 border-2 border-violet-400"></div>
             <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-              <h3 class="text-base font-bold text-white">NebulaStore — Distributed High-Speed Cache</h3>
-              <span class="text-xs font-mono text-violet-400">Featured Distributed System</span>
+              <h3 class="text-base font-bold text-white">Store Management and Ordering Web Application</h3>
+              <a href="https://store-springboot-q3ha.onrender.com/" target="_blank" class="text-xs font-mono text-emerald-400 hover:underline flex items-center gap-1 font-bold">
+                <span>Live on Render</span>
+                <span>↗</span>
+              </a>
             </div>
-            <div class="text-xs font-mono text-slate-400">Java 22, Raft Consensus, Concurrency, Gossip Protocol</div>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Designed a fault-tolerant in-memory cluster capable of dynamic leader election and hash-ring data partitioning. Benchmark tested with 100 concurrent worker threads maintaining zero data corruption under network partitions.
-            </p>
+            <div class="text-xs font-mono text-slate-400">Java 17, Spring Boot, Thymeleaf, PostgreSQL, Docker, Render</div>
+            <ul class="list-disc list-inside text-xs text-slate-300 space-y-1.5 leading-relaxed pt-1">
+              <li>Built and deployed a full-stack store management system using Java 17, Spring Boot, Thymeleaf, and PostgreSQL.</li>
+              <li>Implemented secure authentication using Spring Security with BCrypt encryption and role-based access control.</li>
+              <li>Integrated WhatsApp-based ordering workflow and deployed on Render using Docker with CI/CD pipelines.</li>
+              <li>Utilized Claude and GitHub Copilot for rapid development and reliability testing.</li>
+            </ul>
           </div>
 
-          <!-- Featured System 2 -->
+          <!-- Project 2 -->
           <div class="relative pl-6 border-l-2 border-cyan-500/40 space-y-2">
             <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-cosmic-950 border-2 border-cyan-400"></div>
             <div class="flex flex-col sm:flex-row sm:items-center justify-between">
-              <h3 class="text-base font-bold text-white">QueryNova — SQL Execution Graph Visualizer</h3>
-              <span class="text-xs font-mono text-cyan-400">Database Tool</span>
+              <h3 class="text-base font-bold text-white">Online Exam Portal</h3>
+              <span class="text-xs font-mono text-cyan-400">Full-Stack Application</span>
             </div>
-            <div class="text-xs font-mono text-slate-400">Java, Spring Boot, PostgreSQL EXPLAIN ANALYZE, Angular</div>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Converts complex recursive SQL queries and nested join plans into intuitive orbital execution flowcharts, enabling developers to pinpoint slow table scans within seconds.
+            <div class="text-xs font-mono text-slate-400">Spring Boot, Angular, Hibernate, MySQL, JWT, TypeScript</div>
+            <ul class="list-disc list-inside text-xs text-slate-300 space-y-1.5 leading-relaxed pt-1">
+              <li>Developed a full-stack examination platform using Spring Boot, Angular, Hibernate, and MySQL.</li>
+              <li>Built responsive frontend with Angular using component-based architecture, reactive forms, and TypeScript.</li>
+              <li>Implemented JWT-based authentication, role-based access control, and automated exam evaluation.</li>
+            </ul>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="relative pl-6 border-l-2 border-amber-500/40 space-y-2">
+            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-cosmic-950 border-2 border-amber-400"></div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+              <h3 class="text-base font-bold text-white">SnapProof – Digital Evidence Generator</h3>
+              <a href="https://snapproof-tool.onrender.com/" target="_blank" class="text-xs font-mono text-emerald-400 hover:underline flex items-center gap-1 font-bold">
+                <span>Live on Render</span>
+                <span>↗</span>
+              </a>
+            </div>
+            <div class="text-xs font-mono text-slate-400">Python, SaaS Architecture, PDF Generation, Render Deployment</div>
+            <p class="text-xs text-slate-300 leading-relaxed pt-1">
+              Python-based SaaS tool engineered to convert exported WhatsApp chat archives into tamper-evident, court-admissible PDF packages; containerized and deployed on Render.
             </p>
           </div>
 
         </div>
 
-        <!-- 4. Academic Foundation -->
-        <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-4">
-          <h2 class="text-xs font-mono text-cyan-400 uppercase tracking-widest">
-            04 // ACADEMIC FOUNDATION
-          </h2>
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs">
-            <div>
-              <h4 class="font-bold text-white text-sm">Bachelor of Technology in Computer Science & Engineering</h4>
-              <p class="text-slate-400 font-mono">Core Focus: Distributed Systems, Operating Systems, Relational DBMS, Algorithms</p>
+        <!-- 5. Education & Certifications -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Education -->
+          <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-3">
+            <h2 class="text-xs font-mono text-cyan-400 uppercase tracking-widest">
+              05 // EDUCATION
+            </h2>
+            <div class="space-y-1 text-xs">
+              <h4 class="font-bold text-white text-sm">Bachelor of Engineering in Computer Science</h4>
+              <p class="text-cyan-300 font-mono">Ramrao Adik Institute of Technology, Navi Mumbai</p>
+              <div class="flex items-center justify-between pt-2 text-slate-400 font-mono">
+                <span>2018 – 2022</span>
+                <span class="text-emerald-400 font-bold">CGPA: 8.25</span>
+              </div>
             </div>
-            <span class="font-mono text-cyan-400 mt-1 sm:mt-0 font-bold">First Class with Distinction</span>
           </div>
+
+          <!-- Certifications -->
+          <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-3">
+            <h2 class="text-xs font-mono text-cyan-400 uppercase tracking-widest">
+              06 // CERTIFICATIONS
+            </h2>
+            <div class="space-y-3 text-xs font-mono">
+              <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+                <div class="text-white font-bold">Oracle Certified Professional</div>
+                <div class="text-cyan-300">Java SE 11 Developer (2022)</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+                <div class="text-white font-bold">AWS Certified Cloud Practitioner</div>
+                <div class="text-cyan-300">Amazon Web Services (2022)</div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -173,3 +242,4 @@ export class ResumePageComponent {
     this.themeService.transitionTo('/');
   }
 }
+

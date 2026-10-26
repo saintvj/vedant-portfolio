@@ -36,17 +36,17 @@ import { ThemeTransitionService } from '../../../core/services/theme-transition.
 
           <!-- Punchy Bio -->
           <p class="text-lg sm:text-xl text-pop-slate max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
-            I'm a software engineer crafting high-throughput backend microservices, rock-solid PostgreSQL databases, and snappy, vibrant web applications.
+            Backend-focused Software Engineer with 3.8+ years of enterprise experience building scalable, secure, and high-performance applications with Java, Spring Boot, SQL, and modern web architectures.
           </p>
 
-          <!-- Mindset Callout -->
+          <!-- Core Focus Callout -->
           <div class="p-4 rounded-2xl bg-white border border-pop-border/80 shadow-sm max-w-lg mx-auto lg:mx-0 flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-pop-peach flex items-center justify-center text-2xl flex-shrink-0 animate-wiggle">
-              🚴
+              ⚡
             </div>
             <div class="text-xs text-pop-slate text-left">
-              <span class="font-bold text-pop-dark block text-sm">Everyday Office Cyclist & Half-Marathon Prep</span>
-              Pushing boundaries both on the bike trail and in distributed concurrency benchmarks.
+              <span class="font-bold text-pop-dark block text-sm">Senior Software Engineer at LTIMindtree</span>
+              Specialized in transaction processing, microservices, database modernization, and cloud automation.
             </div>
           </div>
 
@@ -62,7 +62,7 @@ import { ThemeTransitionService } from '../../../core/services/theme-transition.
             <a 
               href="#projects" 
               class="w-full sm:w-auto px-7 py-5 rounded-2xl bg-white hover:bg-pop-peach/40 text-pop-dark font-bold text-sm tracking-wide border-2 border-pop-border transition-all flex items-center justify-center gap-2 hover:border-pop-coral shadow-sm">
-              <span>EXPLORE APPS</span>
+              <span>EXPLORE PROJECTS</span>
               <span class="text-pop-coral">⚡</span>
             </a>
           </div>
@@ -70,16 +70,16 @@ import { ThemeTransitionService } from '../../../core/services/theme-transition.
           <!-- Quick Stats Pills in Pop Studio Style -->
           <div class="grid grid-cols-3 gap-4 pt-4 max-w-md mx-auto lg:mx-0 text-left">
             <div class="bg-white p-4 rounded-2xl border border-pop-border shadow-sm hover:border-pop-coral/40 transition-colors">
-              <div class="text-2xl font-black text-pop-coral font-mono">99.9%</div>
-              <div class="text-xs text-pop-slate font-bold mt-0.5">Uptime Focus</div>
+              <div class="text-2xl font-black text-pop-coral font-mono">3.8+</div>
+              <div class="text-xs text-pop-slate font-bold mt-0.5">Years Experience</div>
             </div>
             <div class="bg-white p-4 rounded-2xl border border-pop-border shadow-sm hover:border-pop-orange/40 transition-colors">
-              <div class="text-2xl font-black text-pop-orange font-mono">500+</div>
-              <div class="text-xs text-pop-slate font-bold mt-0.5">LeetCode Solved</div>
+              <div class="text-2xl font-black text-pop-orange font-mono">90%</div>
+              <div class="text-xs text-pop-slate font-bold mt-0.5">Test Coverage</div>
             </div>
             <div class="bg-white p-4 rounded-2xl border border-pop-border shadow-sm hover:border-pop-yellow/80 transition-colors">
-              <div class="text-2xl font-black text-pop-dark font-mono">21.1 km</div>
-              <div class="text-xs text-pop-slate font-bold mt-0.5">HM Marathon Prep</div>
+              <div class="text-2xl font-black text-pop-dark font-mono">40%</div>
+              <div class="text-xs text-pop-slate font-bold mt-0.5">Batch Automation</div>
             </div>
           </div>
 
@@ -100,32 +100,21 @@ import { ThemeTransitionService } from '../../../core/services/theme-transition.
             <!-- Card Container -->
             <div class="relative w-full h-full rounded-3xl bg-white p-3 border-4 border-white shadow-2xl flex flex-col justify-between overflow-hidden">
               
-              <!-- Avatar with Goggles Photo -->
+              <!-- Clean Avatar Photo (No Goggles/Tilt Badges) -->
               <div class="relative w-full h-72 sm:h-84 rounded-2xl overflow-hidden bg-pop-peach">
                 <img 
                   [src]="heroPhotoUrl" 
                   (error)="handleImageError()"
-                  alt="Vedant Jakarwar with Sport Goggles" 
+                  alt="Vedant Jakarwar" 
                   class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
                 />
-                
-                <!-- Goggles Mode Tag -->
-                <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-pop-dark/85 backdrop-blur-md text-white text-[11px] font-mono font-bold flex items-center gap-1.5 shadow-md">
-                  <span>🥽</span>
-                  <span>GOGGLES MODE: ACTIVE</span>
-                </div>
-
-                <!-- 3D Floating Badge -->
-                <div class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-pop-border shadow-lg text-xs font-mono font-extrabold text-pop-dark">
-                  ⚡ 3D TILT READY
-                </div>
               </div>
 
               <!-- Card Bottom info bar -->
               <div class="p-3 bg-pop-bg rounded-2xl border border-pop-border flex items-center justify-between">
                 <div>
                   <h3 class="font-black text-sm text-pop-dark">Vedant Jakarwar</h3>
-                  <p class="text-[11px] text-pop-slate font-medium">Software Engineer • Adventurer</p>
+                  <p class="text-[11px] text-pop-slate font-medium">Senior Software Engineer • LTIMindtree</p>
                 </div>
                 <div class="w-9 h-9 rounded-xl bg-pop-coral flex items-center justify-center text-white font-mono font-black text-xs shadow-md shadow-pop-coral/30">
                   VJ
@@ -138,15 +127,7 @@ import { ThemeTransitionService } from '../../../core/services/theme-transition.
             <div 
               class="absolute -top-4 -right-4 px-4 py-2 rounded-2xl bg-white border-2 border-pop-orange/40 text-xs font-mono font-black text-pop-dark shadow-xl flex items-center gap-2 animate-bounce-subtle">
               <span>☕</span>
-              <span>Java 22 + Spring</span>
-            </div>
-
-            <!-- Floating Micro-Pill: 21km Runner -->
-            <div 
-              class="absolute -bottom-4 -left-4 px-4 py-2 rounded-2xl bg-white border-2 border-pop-coral/40 text-xs font-mono font-black text-pop-coral shadow-xl flex items-center gap-2 animate-bounce-subtle"
-              style="animation-delay: 1s;">
-              <span>🏃‍♂️</span>
-              <span>21km Road Prep</span>
+              <span>Java + Spring Boot</span>
             </div>
 
           </div>

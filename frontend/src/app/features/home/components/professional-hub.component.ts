@@ -31,18 +31,18 @@ import { CommonModule } from '@angular/common';
               <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 text-2xl font-bold font-mono">
                 ☕
               </div>
-              <h3 class="text-xl font-black text-pop-dark">Java & Enterprise Core</h3>
+              <h3 class="text-xl font-black text-pop-dark">Java & Microservices</h3>
               <p class="text-pop-slate text-sm leading-relaxed">
-                Clean, idiomatic modern Java (17/21/22). Spring Boot 3 microservices, resilient connection pooling, multi-threading, concurrency safety, and RESTful service design.
+                Enterprise financial transaction systems using Java, Spring Boot microservices, Spring Security, and REST APIs. Automated Unix/Linux batch processing, cutting testing times by 40%.
               </p>
             </div>
             
             <div class="mt-6 pt-4 border-t border-pop-border space-y-2">
               <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Java 22</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Spring Boot 3</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Spring Data JPA</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">JUnit / Mockito</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Java 17/11</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Spring Boot</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Microservices</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Batch Processing</span>
               </div>
             </div>
           </div>
@@ -53,18 +53,18 @@ import { CommonModule } from '@angular/common';
               <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center text-cyan-600 text-2xl font-bold font-mono">
                 🗄️
               </div>
-              <h3 class="text-xl font-black text-pop-dark">SQL & Data Persistence</h3>
+              <h3 class="text-xl font-black text-pop-dark">Databases & Modernization</h3>
               <p class="text-pop-slate text-sm leading-relaxed">
-                Relational schema modeling, index optimization, execution plan (EXPLAIN ANALYZE) diagnosis, ACID transactions, and query tuning with PostgreSQL.
+                Relational databases (Oracle SQL, PostgreSQL, MySQL) and legacy Sybase-to-Oracle migrations. Backend logic with PL/SQL, schema design, and 90% regression test coverage.
               </p>
             </div>
             
             <div class="mt-6 pt-4 border-t border-pop-border space-y-2">
               <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Oracle SQL</span>
                 <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">PostgreSQL</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Complex Joins</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Index Optimization</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Supabase / Neon</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">PL/SQL</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Hibernate JPA</span>
               </div>
             </div>
           </div>
@@ -75,18 +75,18 @@ import { CommonModule } from '@angular/common';
               <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 text-2xl font-bold font-mono">
                 ⚡
               </div>
-              <h3 class="text-xl font-black text-pop-dark">Angular & Interactive UI</h3>
+              <h3 class="text-xl font-black text-pop-dark">Frontend, DevOps & AI</h3>
               <p class="text-pop-slate text-sm leading-relaxed">
-                Modern Angular standalone components, RxJS state flows, reactive Angular Signals, high-performance styling with Tailwind CSS, and strict TypeScript safety.
+                Modular responsive frontends with Angular & TypeScript, CI/CD with Docker and Jenkins, plus workflow acceleration using GitHub Copilot, Claude, and Gemini.
               </p>
             </div>
             
             <div class="mt-6 pt-4 border-t border-pop-border space-y-2">
               <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Angular 18</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">TypeScript</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Tailwind CSS</span>
-                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">RxJS & Signals</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Angular</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Docker</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">CI/CD / Jenkins</span>
+                <span class="px-2.5 py-1 text-xs font-mono font-medium bg-pop-bg text-pop-dark rounded-md border border-pop-border">Python</span>
               </div>
             </div>
           </div>

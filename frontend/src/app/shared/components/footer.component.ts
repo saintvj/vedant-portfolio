@@ -35,7 +35,7 @@ import { ThemeTransitionService } from '../../core/services/theme-transition.ser
         </div>
 
         <div class="flex items-center gap-6 text-sm font-semibold">
-          <a href="https://github.com/vedantjakarwar" target="_blank" rel="noreferrer" 
+          <a href="https://github.com/saintvj" target="_blank" rel="noreferrer" 
              [ngClass]="themeService.currentTheme() === 'pop' ? 'text-pop-slate hover:text-pop-coral' : 'text-slate-400 hover:text-cyan-400'"
              class="transition-colors">GitHub</a>
           <a href="https://linkedin.com/in/vedantjakarwar" target="_blank" rel="noreferrer" 
