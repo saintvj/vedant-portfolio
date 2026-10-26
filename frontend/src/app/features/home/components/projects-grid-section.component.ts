@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PortfolioApiService } from '../../../core/services/portfolio-api.service';
+import { SupabaseService } from '../../../services/supabase.service';
 import { Project } from '../../../core/models/portfolio.models';
 
 @Component({
@@ -27,7 +27,7 @@ import { Project } from '../../../core/models/portfolio.models';
           
           <div class="flex items-center gap-2 text-xs font-mono text-pop-slate bg-pop-bg px-4 py-2 rounded-xl border border-pop-border">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>BACKEND SYNC: SUPABASE READY</span>
+            <span>DIRECT SUPABASE REST ACTIVE</span>
           </div>
         </div>
 
@@ -44,9 +44,9 @@ import { Project } from '../../../core/models/portfolio.models';
                   ⚡
                 </span>
                 <div class="flex items-center gap-2">
-                  <span *ngIf="project.starsCount" class="flex items-center gap-1 text-xs font-mono font-bold text-pop-dark bg-pop-bg px-2.5 py-1 rounded-full border border-pop-border">
+                  <span *ngIf="project.starsCount || project.stars_count" class="flex items-center gap-1 text-xs font-mono font-bold text-pop-dark bg-pop-bg px-2.5 py-1 rounded-full border border-pop-border">
                     <span class="text-amber-500">★</span>
-                    <span>{{ project.starsCount }}</span>
+                    <span>{{ project.starsCount ?? project.stars_count }}</span>
                   </span>
                   <span *ngIf="project.featured" class="px-2.5 py-0.5 rounded-full bg-pop-coral text-white text-[10px] font-mono font-bold uppercase tracking-wider">
                     Featured
@@ -74,7 +74,7 @@ import { Project } from '../../../core/models/portfolio.models';
             <div class="mt-6 pt-4 border-t border-pop-border space-y-4">
               <div class="flex flex-wrap gap-1.5">
                 <span 
-                  *ngFor="let tech of project.techStack" 
+                  *ngFor="let tech of (project.techStack || project.tech_stack || [])" 
                   class="px-2.5 py-1 text-[11px] font-mono font-medium rounded-lg bg-pop-bg text-pop-dark border border-pop-border">
                   {{ tech }}
                 </span>
@@ -82,16 +82,16 @@ import { Project } from '../../../core/models/portfolio.models';
 
               <div class="flex items-center gap-3 pt-2">
                 <a 
-                  *ngIf="project.githubUrl" 
-                  [href]="project.githubUrl" 
+                  *ngIf="project.githubUrl || project.github_url" 
+                  [href]="project.githubUrl || project.github_url" 
                   target="_blank" 
                   class="flex-1 py-2 rounded-xl bg-pop-bg hover:bg-pop-dark hover:text-white text-pop-dark text-xs font-mono font-bold text-center border border-pop-border transition-all flex items-center justify-center gap-1.5">
                   <span>Source Code</span>
                   <span>↗</span>
                 </a>
                 <a 
-                  *ngIf="project.liveUrl" 
-                  [href]="project.liveUrl" 
+                  *ngIf="project.liveUrl || project.live_url" 
+                  [href]="project.liveUrl || project.live_url" 
                   target="_blank" 
                   class="flex-1 py-2 rounded-xl bg-pop-coral hover:bg-pop-orange text-white text-xs font-mono font-bold text-center transition-all flex items-center justify-center gap-1.5 shadow-sm shadow-pop-coral/30">
                   <span>Live Preview</span>
@@ -108,12 +108,63 @@ import { Project } from '../../../core/models/portfolio.models';
   `
 })
 export class ProjectsGridSectionComponent implements OnInit {
-  private api = inject(PortfolioApiService);
+  private supabaseService = inject(SupabaseService);
   projects: Project[] = [];
 
-  ngOnInit(): void {
-    this.api.getProjects().subscribe(data => {
-      this.projects = data;
-    });
+  private defaultProjects: Project[] = [
+    {
+      id: '1',
+      title: 'NebulaStore - Distributed Cache',
+      punchline: 'Zero-latency memory grid with cosmic fault tolerance',
+      description: 'A high-throughput distributed key-value store built in Java 22 featuring consistent hashing, cluster gossip protocols, and Raft consensus replication.',
+      tech_stack: ['Java 22', 'Spring Boot', 'PostgreSQL', 'Docker', 'gRPC'],
+      github_url: 'https://github.com/vedantjakarwar/nebulastore',
+      live_url: 'https://nebulastore.vedantjakarwar.com',
+      stars_count: 142,
+      featured: true,
+      display_order: 1
+    },
+    {
+      id: '2',
+      title: 'AstroMetrics Portfolio Engine',
+      punchline: 'Next-gen developer showcase with real-time analytics',
+      description: 'Full-stack portfolio engine orchestrating live GitHub commits, LeetCode progress telemetry, and modern micro-interactions.',
+      tech_stack: ['Angular 18', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+      github_url: 'https://github.com/vedantjakarwar/vedant-portfolio',
+      live_url: 'https://vedantjakarwar.com',
+      stars_count: 89,
+      featured: true,
+      display_order: 2
+    },
+    {
+      id: '3',
+      title: 'QueryNova SQL Visualizer',
+      punchline: 'Turn complex recursive CTEs into intuitive cosmic orbital maps',
+      description: 'Interactive database query explainer that diagrams deep relational query execution plans into smooth, step-by-step visual graphs.',
+      tech_stack: ['Java', 'SQL', 'PostgreSQL EXPLAIN', 'Angular'],
+      github_url: 'https://github.com/vedantjakarwar/querynova',
+      live_url: 'https://querynova.vedantjakarwar.com',
+      stars_count: 64,
+      featured: true,
+      display_order: 3
+    }
+  ];
+
+  async ngOnInit(): Promise<void> {
+    try {
+      const { data, error } = await this.supabaseService.client
+        .from('projects')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (error || !data || data.length === 0) {
+        this.projects = this.defaultProjects;
+      } else {
+        this.projects = data as Project[];
+      }
+    } catch {
+      this.projects = this.defaultProjects;
+    }
   }
 }
+

@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PortfolioApiService } from '../../../core/services/portfolio-api.service';
+import { SupabaseService } from '../../../services/supabase.service';
 import { FriendPhoto } from '../../../core/models/portfolio.models';
 
 @Component({
@@ -39,7 +39,7 @@ import { FriendPhoto } from '../../../core/models/portfolio.models';
             <!-- Photo Image with Vibrant Frame -->
             <div class="h-64 rounded-2xl overflow-hidden relative bg-pop-peach">
               <img 
-                [src]="photo.imageUrl" 
+                [src]="photo.imageUrl || photo.image_url" 
                 [alt]="photo.caption" 
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -49,7 +49,7 @@ import { FriendPhoto } from '../../../core/models/portfolio.models';
               <div 
                 class="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-[10px] font-mono font-bold shadow-md"
                 [ngClass]="getVibrantTagClass(i)">
-                #{{ photo.vibeTag }}
+                #{{ photo.vibeTag || photo.vibe_tag }}
               </div>
             </div>
 
@@ -63,7 +63,7 @@ import { FriendPhoto } from '../../../core/models/portfolio.models';
                   <span>📍</span>
                   <span>{{ photo.location }}</span>
                 </span>
-                <span class="text-pop-coral font-bold">{{ photo.memoryDate }}</span>
+                <span class="text-pop-coral font-bold">{{ photo.memoryDate || photo.memory_date }}</span>
               </div>
             </div>
 
@@ -75,13 +75,58 @@ import { FriendPhoto } from '../../../core/models/portfolio.models';
   `
 })
 export class FriendsGallerySectionComponent implements OnInit {
-  private api = inject(PortfolioApiService);
+  private supabaseService = inject(SupabaseService);
   photos: FriendPhoto[] = [];
 
-  ngOnInit(): void {
-    this.api.getFriendPhotos().subscribe(data => {
-      this.photos = data;
-    });
+  private defaultPhotos: FriendPhoto[] = [
+    {
+      id: '1',
+      caption: 'Summit conquest at dawn — 4,200m above sea level with the core crew',
+      image_url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+      location: 'Himalayan Ridge',
+      memory_date: '2026-05-18',
+      vibe_tag: 'Summit'
+    },
+    {
+      id: '2',
+      caption: '36-hour hackathon sprint. 4 coffees in, 0 bugs tolerated',
+      image_url: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80',
+      location: 'Bengaluru Hack House',
+      memory_date: '2026-08-12',
+      vibe_tag: 'Late Night Hack'
+    },
+    {
+      id: '3',
+      caption: 'Midnight desert stargazing run — recalibrating cosmic perspective',
+      image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+      location: 'Spiti Valley',
+      memory_date: '2026-09-04',
+      vibe_tag: 'Adventure'
+    },
+    {
+      id: '4',
+      caption: 'Weekend track day & adrenaline therapy with the brothers',
+      image_url: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80',
+      location: 'BIC Circuit',
+      memory_date: '2026-03-22',
+      vibe_tag: 'Adrenaline'
+    }
+  ];
+
+  async ngOnInit(): Promise<void> {
+    try {
+      const { data, error } = await this.supabaseService.client
+        .from('friends_gallery')
+        .select('*');
+
+      if (error || !data || data.length === 0) {
+        this.photos = this.defaultPhotos;
+      } else {
+        this.photos = data as FriendPhoto[];
+      }
+    } catch {
+      this.photos = this.defaultPhotos;
+    }
   }
 
   getVibrantBorderClass(index: number): string {
@@ -104,3 +149,4 @@ export class FriendsGallerySectionComponent implements OnInit {
     return tags[index % tags.length];
   }
 }
+

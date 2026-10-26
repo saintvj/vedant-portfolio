@@ -1,47 +1,46 @@
-﻿import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Injectable, inject } from '@angular/core';
+import { Observable, from, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { SupabaseService } from '../../services/supabase.service';
 import { Testimonial, Project, FriendPhoto } from '../models/portfolio.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PortfolioApiService {
-  private http = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:8080/api';
+  private supabaseService = inject(SupabaseService);
 
   // Fallback initial data to ensure the UI is 100% functional out-of-the-box
   private mockTestimonials: Testimonial[] = [
     {
       id: '1',
-      authorName: 'Aarav Sharma',
-      authorRole: 'Senior Engineering Lead',
+      author_name: 'Aarav Sharma',
+      author_role: 'Senior Engineering Lead',
       company: 'CloudScale Inc.',
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+      avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
       content: 'Vedant writes backend services like he lives life: bold, uncompromising on reliability, and lightning fast. Fixed our deadlock issue before morning standup.',
       rating: 5,
-      relationshipTag: 'Tech Lead'
+      relationship_tag: 'Tech Lead'
     },
     {
       id: '2',
-      authorName: 'Priya Nair',
-      authorRole: 'Lead Frontend Architect',
+      author_name: 'Priya Nair',
+      author_role: 'Lead Frontend Architect',
       company: 'HyperLoop Labs',
-      avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80',
+      avatar_url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80',
       content: 'Pairing with Vedant is pure electricity. His eye for high-polish dark cosmic themes combined with rock-solid Angular architecture blew our stakeholders away.',
       rating: 5,
-      relationshipTag: 'Design Partner'
+      relationship_tag: 'Design Partner'
     },
     {
       id: '3',
-      authorName: 'Rohan Deshmukh',
-      authorRole: 'Staff DevOps Engineer',
+      author_name: 'Rohan Deshmukh',
+      author_role: 'Staff DevOps Engineer',
       company: 'Apex Systems',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+      avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
       content: 'The kind of engineer who tackles complex distributed systems problems with a grin and a witty joke. Total game-changer on any mission-critical squad.',
       rating: 5,
-      relationshipTag: 'Mentor'
+      relationship_tag: 'Mentor'
     }
   ];
 
@@ -51,36 +50,36 @@ export class PortfolioApiService {
       title: 'NebulaStore - Distributed Cache',
       punchline: 'Zero-latency memory grid with cosmic fault tolerance',
       description: 'A high-throughput distributed key-value store built in Java 22 featuring consistent hashing, cluster gossip protocols, and Raft consensus replication.',
-      techStack: ['Java 22', 'Spring Boot', 'PostgreSQL', 'Docker', 'gRPC'],
-      githubUrl: 'https://github.com/vedantjakarwar/nebulastore',
-      liveUrl: 'https://nebulastore.vedantjakarwar.com',
-      starsCount: 142,
+      tech_stack: ['Java 22', 'Spring Boot', 'PostgreSQL', 'Docker', 'gRPC'],
+      github_url: 'https://github.com/vedantjakarwar/nebulastore',
+      live_url: 'https://nebulastore.vedantjakarwar.com',
+      stars_count: 142,
       featured: true,
-      displayOrder: 1
+      display_order: 1
     },
     {
       id: '2',
       title: 'AstroMetrics Portfolio Engine',
       punchline: 'Next-gen developer showcase with real-time analytics',
       description: 'Full-stack portfolio engine orchestrating live GitHub commits, LeetCode progress telemetry, and modern micro-interactions.',
-      techStack: ['Angular 18', 'TypeScript', 'Tailwind CSS', 'Java Spring Boot'],
-      githubUrl: 'https://github.com/vedantjakarwar/vedant-portfolio',
-      liveUrl: 'https://vedantjakarwar.com',
-      starsCount: 89,
+      tech_stack: ['Angular 18', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+      github_url: 'https://github.com/vedantjakarwar/vedant-portfolio',
+      live_url: 'https://vedantjakarwar.com',
+      stars_count: 89,
       featured: true,
-      displayOrder: 2
+      display_order: 2
     },
     {
       id: '3',
       title: 'QueryNova SQL Visualizer',
       punchline: 'Turn complex recursive CTEs into intuitive cosmic orbital maps',
       description: 'Interactive database query explainer that diagrams deep relational query execution plans into smooth, step-by-step visual graphs.',
-      techStack: ['Java', 'SQL', 'PostgreSQL EXPLAIN', 'Angular'],
-      githubUrl: 'https://github.com/vedantjakarwar/querynova',
-      liveUrl: 'https://querynova.vedantjakarwar.com',
-      starsCount: 64,
+      tech_stack: ['Java', 'SQL', 'PostgreSQL EXPLAIN', 'Angular'],
+      github_url: 'https://github.com/vedantjakarwar/querynova',
+      live_url: 'https://querynova.vedantjakarwar.com',
+      stars_count: 64,
       featured: true,
-      displayOrder: 3
+      display_order: 3
     }
   ];
 
@@ -88,52 +87,76 @@ export class PortfolioApiService {
     {
       id: '1',
       caption: 'Summit conquest at dawn — 4,200m above sea level with the core crew',
-      imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+      image_url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
       location: 'Himalayan Ridge',
-      memoryDate: '2026-05-18',
-      vibeTag: 'Summit'
+      memory_date: '2026-05-18',
+      vibe_tag: 'Summit'
     },
     {
       id: '2',
       caption: '36-hour hackathon sprint. 4 coffees in, 0 bugs tolerated',
-      imageUrl: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80',
+      image_url: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80',
       location: 'Bengaluru Hack House',
-      memoryDate: '2026-08-12',
-      vibeTag: 'Late Night Hack'
+      memory_date: '2026-08-12',
+      vibe_tag: 'Late Night Hack'
     },
     {
       id: '3',
       caption: 'Midnight desert stargazing run — recalibrating cosmic perspective',
-      imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+      image_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
       location: 'Spiti Valley',
-      memoryDate: '2026-09-04',
-      vibeTag: 'Adventure'
+      memory_date: '2026-09-04',
+      vibe_tag: 'Adventure'
     },
     {
       id: '4',
       caption: 'Weekend track day & adrenaline therapy with the brothers',
-      imageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80',
+      image_url: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80',
       location: 'BIC Circuit',
-      memoryDate: '2026-03-22',
-      vibeTag: 'Adrenaline'
+      memory_date: '2026-03-22',
+      vibe_tag: 'Adrenaline'
     }
   ];
 
   getTestimonials(): Observable<Testimonial[]> {
-    return this.http.get<Testimonial[]>(`${this.baseUrl}/testimonials`).pipe(
+    return from(this.supabaseService.client.from('testimonials').select('*')).pipe(
+      map(res => {
+        if (res.error || !res.data || res.data.length === 0) {
+          return this.mockTestimonials;
+        }
+        return res.data as Testimonial[];
+      }),
       catchError(() => of(this.mockTestimonials))
     );
   }
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.baseUrl}/projects`).pipe(
+    return from(
+      this.supabaseService.client
+        .from('projects')
+        .select('*')
+        .order('display_order', { ascending: true })
+    ).pipe(
+      map(res => {
+        if (res.error || !res.data || res.data.length === 0) {
+          return this.mockProjects;
+        }
+        return res.data as Project[];
+      }),
       catchError(() => of(this.mockProjects))
     );
   }
 
   getFriendPhotos(): Observable<FriendPhoto[]> {
-    return this.http.get<FriendPhoto[]>(`${this.baseUrl}/friends-gallery`).pipe(
+    return from(this.supabaseService.client.from('friends_gallery').select('*')).pipe(
+      map(res => {
+        if (res.error || !res.data || res.data.length === 0) {
+          return this.mockPhotos;
+        }
+        return res.data as FriendPhoto[];
+      }),
       catchError(() => of(this.mockPhotos))
     );
   }
 }
+

@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PortfolioApiService } from '../../../core/services/portfolio-api.service';
+import { SupabaseService } from '../../../services/supabase.service';
 import { Testimonial } from '../../../core/models/portfolio.models';
 
 @Component({
@@ -36,7 +36,7 @@ import { Testimonial } from '../../../core/models/portfolio.models';
               <div class="flex items-center gap-1 text-amber-500 text-lg">
                 <span *ngFor="let s of [1,2,3,4,5]">★</span>
                 <span class="ml-2 text-xs font-mono font-bold text-pop-coral bg-pop-peach px-2.5 py-0.5 rounded-full">
-                  {{ currentTestimonial.relationshipTag }}
+                  {{ currentTestimonial.relationshipTag || currentTestimonial.relationship_tag }}
                 </span>
               </div>
 
@@ -48,13 +48,13 @@ import { Testimonial } from '../../../core/models/portfolio.models';
               <!-- Author Info -->
               <div class="flex items-center gap-4 pt-4 border-t border-pop-border">
                 <img 
-                  [src]="currentTestimonial.avatarUrl" 
-                  [alt]="currentTestimonial.authorName"
+                  [src]="currentTestimonial.avatarUrl || currentTestimonial.avatar_url" 
+                  [alt]="currentTestimonial.authorName || currentTestimonial.author_name"
                   class="w-14 h-14 rounded-full object-cover border-2 border-pop-coral shadow-md"
                 />
                 <div>
-                  <h4 class="font-black text-pop-dark text-base">{{ currentTestimonial.authorName }}</h4>
-                  <p class="text-xs text-pop-slate font-mono">{{ currentTestimonial.authorRole }} • <span class="text-pop-coral font-bold">{{ currentTestimonial.company }}</span></p>
+                  <h4 class="font-black text-pop-dark text-base">{{ currentTestimonial.authorName || currentTestimonial.author_name }}</h4>
+                  <p class="text-xs text-pop-slate font-mono">{{ currentTestimonial.authorRole || currentTestimonial.author_role }} • <span class="text-pop-coral font-bold">{{ currentTestimonial.company }}</span></p>
                 </div>
               </div>
             </div>
@@ -92,30 +92,78 @@ import { Testimonial } from '../../../core/models/portfolio.models';
   `
 })
 export class TestimonialsSectionComponent implements OnInit {
-  private api = inject(PortfolioApiService);
+  private supabaseService = inject(SupabaseService);
   testimonials: Testimonial[] = [];
   currentIndex = 0;
 
+  private defaultTestimonials: Testimonial[] = [
+    {
+      id: '1',
+      author_name: 'Aarav Sharma',
+      author_role: 'Senior Engineering Lead',
+      company: 'CloudScale Inc.',
+      avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+      content: 'Vedant writes backend services like he lives life: bold, uncompromising on reliability, and lightning fast. Fixed our deadlock issue before morning standup.',
+      rating: 5,
+      relationship_tag: 'Tech Lead'
+    },
+    {
+      id: '2',
+      author_name: 'Priya Nair',
+      author_role: 'Lead Frontend Architect',
+      company: 'HyperLoop Labs',
+      avatar_url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80',
+      content: 'Pairing with Vedant is pure electricity. His eye for high-polish dark cosmic themes combined with rock-solid Angular architecture blew our stakeholders away.',
+      rating: 5,
+      relationship_tag: 'Design Partner'
+    },
+    {
+      id: '3',
+      author_name: 'Rohan Deshmukh',
+      author_role: 'Staff DevOps Engineer',
+      company: 'Apex Systems',
+      avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+      content: 'The kind of engineer who tackles complex distributed systems problems with a grin and a witty joke. Total game-changer on any mission-critical squad.',
+      rating: 5,
+      relationship_tag: 'Mentor'
+    }
+  ];
+
   get currentTestimonial(): Testimonial {
     return this.testimonials[this.currentIndex] || {
-      authorName: '',
-      authorRole: '',
+      author_name: '',
+      author_role: '',
       content: '',
       rating: 5
     };
   }
 
-  ngOnInit(): void {
-    this.api.getTestimonials().subscribe(data => {
-      this.testimonials = data;
-    });
+  async ngOnInit(): Promise<void> {
+    try {
+      const { data, error } = await this.supabaseService.client
+        .from('testimonials')
+        .select('*');
+
+      if (error || !data || data.length === 0) {
+        this.testimonials = this.defaultTestimonials;
+      } else {
+        this.testimonials = data as Testimonial[];
+      }
+    } catch {
+      this.testimonials = this.defaultTestimonials;
+    }
   }
 
   next(): void {
-    this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
+    if (this.testimonials.length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
+    }
   }
 
   prev(): void {
-    this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
+    if (this.testimonials.length > 0) {
+      this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
+    }
   }
 }
+
